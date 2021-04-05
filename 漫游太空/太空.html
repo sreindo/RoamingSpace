@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 实现一个3D透视的，视差效果的漫游太空 -->
+    <title>漫游太空</title>
+    <!-- 导入Parallax包 -->
+    <script src="/parallax.js"></script>
+    <style>
+        page {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-image: url(/img/background.jpg);
+            background-size: 110%;
+            background-attachment: fixed;
+        }
+        .layer img{
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 1. 外层 id="scene" 场景，对其子元素起作用 -->
+        <div id="scene">
+            <!-- 2.如果类为layer，则视为图层，会堆叠在父元素上 -->
+            <!-- 3.属性data-depth为深度必填，是每个图层的移动快慢，值[0,1] -->
+            <!-- 4.图层layer的顺序随着DOM元素的先后顺序，像一个栈 -->
+            <div class="layer" data-depth="0.9"> <img src="/img/earth.png"></div>
+            <div class="layer"  data-depth="0.7"> <img src="/img/planet1.png"></div>
+            <div class="layer" data-depth="0.1"> <img src="/img/planet2.png"></div>
+            <div class="layer" data-depth="0.6"> <img src="/img/planet3.png"></div>
+            <div class="layer" data-depth="0.4"> <img src="/img/planet4.png"></div>
+            <div class="layer" data-depth="0.2"> <img src="/img/planet5.png"></div>
+            <div class="layer" data-depth="0.5"> <img src="/img/man.png"></div>
+            <div class="layer" data-depth="0.5"> <img src="/img/rocket.png"></div>
+            <div class="layer" data-depth="0"> <img src="/img/text.png"></div>
+        </div>
+    </div>
+    <script>
+        // Parallax实例
+        var scene = document.getElementById('scene');
+        var parallaxInstance = new Parallax(scene);
+    </script>
+</body>
+</html>
